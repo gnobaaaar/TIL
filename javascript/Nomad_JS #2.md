@@ -1,10 +1,6 @@
 # # Nomad Chanllenge #2
 #TIL/javascript
 
-
-
-<br/>
-
 ## day8-9
 ### 랜덤 숫자 맞추기 게임
 
@@ -77,3 +73,73 @@ btnSub.addEventListener("click", handleClickEvent);
 
 init();
 ```
+
+
+
+<br />
+
+### Intervals
+
+```javascript
+const clock = document.querySelector("h2#clock");
+
+function sayHello(){
+	console.log('Hello');
+}
+
+setInterval(sayHello, 5000); #5sec
+#기존 동작이 반복적으로 일어난다
+```
+
+<br />
+
+### Timeouts and Dates
+
+```javascript
+const clock = document.querySelector("h2#clock");
+
+function sayHello(){
+	console.log('Hello');
+}
+
+setTimeout(sayHello, 5000); #5sec
+#기존 동작이 한번 일어난다
+```
+
+<br />
+
+### 
+
+### day10 task
+
+크리스마스까지 D-day 타이머 만들기
+
+```javascript
+const clockContainer = document.querySelector(".jsClock");
+const clockTitle = clockContainer.querySelector(".jsTitle");
+
+function getTime() {
+  const now = new Date().getTime();
+  const xmasDay = new Date("2021-12-24:00:00:00").getTime();
+  const remain = xmasDay - now;
+
+  const days = Math.floor(remain / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((remain % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((remain % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remain % (1000 * 60)) / 1000);
+
+  clockTitle.innerText = `${days < 10 ? `0${days}` : days}d ${
+    hours < 10 ? `0${hours}` : hours
+  }h ${minutes < 10 ? `0${minutes}` : minutes}m ${
+    seconds < 10 ? `0${seconds}` : seconds
+  }s`;
+}
+
+function init() {
+  getTime();
+  setInterval(getTime, 1000);
+}
+init();
+```
+
+[Date 객체와 날짜](
