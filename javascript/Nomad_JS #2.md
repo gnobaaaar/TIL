@@ -143,3 +143,68 @@ init();
 ```
 
 [Date 객체와 날짜](
+
+
+
+## 버튼 클릭 후 그라데이션 적용
+클릭할 때 마다 body의 style 적용 (linear-gradient)
+
+![C67C503D-0B5C-49CD-8DA7-B54CD8DD2765](image/C67C503D-0B5C-49CD-8DA7-B54CD8DD2765.png)
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <button class="btn">Give me color</button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
+```
+
+style.css
+
+```css
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.btn {
+  width: 100px;
+  height: 30px;
+}
+```
+
+app.js
+
+```javascript
+const btn = document.querySelector("button");
+
+colors = ["#ebf8e1", "#9198e5", "#3f87a6", "#e66465", "#f69d3c", "#ffc048"
+];
+
+function color() {
+  const color1 = colors[Math.floor(Math.random() * colors.length)];
+  const color2 = colors[Math.floor(Math.random() * colors.length)];
+  document.body.style.background = `linear-gradient(${color1}, ${color2})`;
+}
+
+btn.addEventListener("click", color);
+```
