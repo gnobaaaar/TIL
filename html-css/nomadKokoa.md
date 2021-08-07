@@ -44,3 +44,70 @@
 
 
 ```
+
+
+
+**화면 동일하게 구현하기**
+
+![img](image/img.png)
+
+index.html
+
+```html
+  <body>
+    <div class="container">
+      <div class="pluss">
+        <div class="inbox box1"></div>
+        <div class="inbox box2"></div>
+        <div class="inbox box3"></div>
+      </div>
+    </div>
+  </body>
+```
+
+style.css
+
+```css
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ff6446;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pluss {
+  width: 300px;
+  height: 300px;
+  background-color: #f5deb3;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.inbox {
+  height: 20%;
+}
+
+.box1 {
+  width: 60px;
+  background-color: #008080;
+  border: 3px solid white;
+}
+
+.box2 {
+  width: 200px;
+  background-color: #008080;
+  border: 3px dotted white;
+}
+
+.box3 {
+  width: 60px;
+  background-color: #008080;
+  border: 3px solid white;
+}
+```
+
