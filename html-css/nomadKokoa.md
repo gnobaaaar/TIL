@@ -111,3 +111,165 @@ style.css
 }
 ```
 
+
+
+## Position, Pseudo Selector
+
+```css
+position : relative
+// 처음 위치를 기준으로 상대적으로 이동, left, top, bottom ...
+position : absolute
+// 가장 가까운 relative 부모를 기준으로 이동
+```
+
+
+
+### pseudo selector
+
+`div:first-child` 등의 selector를 사용하여 잡아준다
+`span:nth-child(2)` : 2번째 요소를 잡아준다, even -> 짝수
+
+```css
+p span{
+}
+// p태그 안의 span 태그 선택, 부모 자식
+div > span {
+	text-decoration : underline;
+}
+// div 밑의 바로 아래 자식에게 
+p + span {
+}
+// p 바로 다음에 오는 형제 태그를 찾는다
+p ~ span
+{}
+//p 다음에 있을 형제 태그 선택
+input : required{
+}
+// requred되어진 input을 선택
+input[type="password"]{
+}
+// 속성으로 찾기
+input[placeholder ~= "name"]{
+	background-color : pink;
+}
+// name이 포함된 placeholder 속성을 가진 input 태그 선택
+```
+
+
+
+## flex-wrap을 이용한 복수 행 flex 컨테이너 지정
+
+<img src="image/image-20210809181103387.png" alt="image-20210809181103387" style="zoom:50%;" />
+
+
+
+### 화면 구현하기
+
+![image-20210809181157075](image/image-20210809181157075.png)
+
+Index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pseudo Selectors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Best Colors</h1>
+      <div class="frames">
+        <div class="colorFrame">
+          <div class="textbox">
+            <h3>Tomato</h3>
+            <span>#FF6347</span>
+          </div>
+        </div>
+        <div class="colorFrame">
+          <div class="textbox">
+            <h3>Teal</h3>
+            <span>#008080</span>
+          </div>
+        </div>
+        <div class="colorFrame">
+          <div class="textbox">
+            <h3>Burlywood</h3>
+            <span>#deb786</span>
+          </div>
+        </div>
+        <div class="colorFrame">
+          <div class="textbox">
+            <h3>Thistle</h3>
+            <span>#d7bfd7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+style.css
+
+```css
+.container {
+  width: 100vw;
+  height: 150vh;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "STIX Two Text", serif;
+}
+
+.frames {
+  width: 500px;
+  height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.colorFrame {
+  width: 200px;
+  height: 60%;
+  position: relative;
+  border: 8px solid white;
+  margin: 15px;
+}
+
+.colorFrame:nth-child(1) {
+  background-color: #ff6347;
+}
+
+.colorFrame:nth-child(2) {
+  background-color: #008080;
+}
+
+.colorFrame:nth-child(3) {
+  background-color: #deb786;
+}
+
+.colorFrame:nth-child(4) {
+  background-color: #d7bfd7;
+}
+
+.textbox {
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  top: 10px;
+  padding-bottom: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+```
+
