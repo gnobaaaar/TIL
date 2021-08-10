@@ -53,20 +53,31 @@ TCL : 트랜잭션 제어어
 LIKE의 다양한 형태(와일드카드)
 `SELECT * FROM book WHERE title LIKE ‘%왕자';`
 
+<br />
 
 ### ORDER BY
+
 `SELECT * FROM score ORDER BY math DESC;`
 값이 높은 데이터부터 정렬하여 검색
 ASC - 오름차순 / DESC - 내림차순
 
+<br />
+
 ### INSERT
+
 `INSERT INTO book(id, title, author, publisher) VALUES('3', '햄릿', '윌리엄', '엘리스 출판');`
 컬럼에 맞는 value를 작성해준다
 
+<br />
+
 ### UPDATE
+
 `UPDATE book SET title='돈키호테 1' WHERE title='돈키호테';`
 
+<br />
+
 ### DELETE
+
 `DELETE FROM book WHERE title = '돈키호테 1';`
 
 <br /><br />
@@ -97,8 +108,10 @@ SELECT * FROM book LIMIT 1, 5;
 
 `LIMIT 1, 5` 는 2번째 칼럼부터 5개를 가져오라는 의미이다
 
+<br />
 
 ### SUM & AVG
+
 SUM : 지정한 *컬럼값*을 모두 더하여 총점을 구해주는 내장함수
 AVG : 지정한 *컬럼*들의 평균값을 구해주는 내장함수
 
@@ -163,3 +176,34 @@ ON user.id = rental.user_id;
 
 *LEFT JOIN*
 왼쪽 테이블의 모든 값을 포함하여 연결하기
+
+```sql
+SELECT *
+FROM user
+LEFT JOIN rental
+ON user.id = rental.user_id;
+```
+
+![BF5916F8-7EE2-459C-B068-6E49318E0674](image/BF5916F8-7EE2-459C-B068-6E49318E0674.png)
+
+<br />
+
+*RIGHT JOIN*
+오른쪽 테이블의 모든 값을 포함하여 연결하기
+
+```sql
+SELECT *
+FROM user
+RIGHT JOIN rental
+ON user.id = rental.user_id;
+```
+
+
+
+![051DEE31-70B4-422D-8FBE-695458158A02](image/051DEE31-70B4-422D-8FBE-695458158A02-8607444.png)
+
+> 데이터 그룹 짓기 : group by
+> 데이터 그룹 + 조건 추가하기 : having
+> 두 개의 테이블 조회하기 : inner join, left join, right join
+> 두 개의 테이블 + 조건 추가하기 : on
+> on A테이블.컬럼 = B테이블.컬럼

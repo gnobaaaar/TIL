@@ -273,3 +273,120 @@ style.css
 }
 ```
 
+
+
+
+
+## State
+active : 누르고 있는 상황
+hover : 마우스가 대상 위에 있을 때
+focus : 키보드로 선택되었을 때를 의미한다
+visited : 링크에만 적용된다
+focus-within : focused를 가진 자식을 가진 부모에게 적용
+```css
+form:hover input{
+	background-color: red;
+}
+//위와 같이 활용이 가능
+```
+
+<br />
+
+## Color
+
+`rgb(255,255,255,0)`
+4번째 요소는 투명도이다
+
+```css
+:root{
+	--main-color: #fcc00;
+	--default-border : 1px solid var(--main-color);
+}
+// 밑에서 변수처럼 위의 컬러를 사용가능하다
+p{
+	color: var(--main-color);
+}
+```
+
+<br />
+
+## Transition
+
+어떤 상태에서 다른 상태로의 애니메이션을 적용하는 방법
+*state가 없는 곳에 사용한다*
+요소의 변화를 찾고 적용한 조건으로 변경한다
+```css
+a{
+	transition : background-color 10s ease-in-out, color 5s ease-in-out;
+}
+a:hover{
+	color:tomato;
+	background-color:wheat;
+}
+
+p{
+	transition: all 5s ease-in-out;
+}
+```
+
+linear : 직선으로 이동
+ease-in-out
+다양한 종류들이 존재한다
+
+<br /><br />
+
+## Transformation
+
+css로 3d 변경이 가능하다
+*다른요소를 건드리지 않고 변경이 가능하다*
+```css
+img{
+	border : 10px solid black;
+	transformation : rotateY(30deg);
+}
+```
+
+rotateY
+rotateX
+scaleX : X축 기준으로 확대
+scale
+translateX(-10px) -> 왼쪽으로 10px
+
+<br />
+
+## Animation
+
+@keyframe으로 만든다
+```css
+@keyframe superFlip{
+	from{
+		transform : rotateX(0);
+	}
+	to{
+		transform : rotateX(360deg);
+	}
+}
+
+img{
+	animation : superFlip 5s ease-in-out infinite;
+}
+```
+
+```css
+@keyframe superFlip{
+	0%{
+		transform : rotateX(0);
+	}
+	50%{
+		transform : rotateX(360deg) translate(100px);
+	}
+	100%{
+		transform : rotateX(0);
+	}
+}
+
+img{
+	width : 200px;
+	animation : superFlip 5s ease-in-out infinite;
+}
+```
