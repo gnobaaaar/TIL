@@ -390,3 +390,133 @@ img{
 	animation : superFlip 5s ease-in-out infinite;
 }
 ```
+
+<br />
+
+<br />
+
+
+
+### day8
+
+**애니메이션 구현하기**
+
+![git연습](image/git연습.gif)
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dots and bars</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="bars">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+style.css
+
+```css
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #6cbcbe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes moveDot {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dots {
+  animation: moveDot 2s ease-in-out infinite;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+@keyframes moveBar {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.bars {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  animation: moveBar 1s ease infinite;
+  width: 10px;
+  height: 50px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+```
+
+> 25% 구간으로 나누어 keyframe 애니메이션을 구현한다면 일시적으로 멈추는 막대바 구현이 가능하다

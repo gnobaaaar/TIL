@@ -207,3 +207,118 @@ ON user.id = rental.user_id;
 > 두 개의 테이블 조회하기 : inner join, left join, right join
 > 두 개의 테이블 + 조건 추가하기 : on
 > on A테이블.컬럼 = B테이블.컬럼
+
+<br /><br />
+
+## 서브쿼리
+하나의 쿼리 안에 포함된 또 하나의 쿼리
+::메인 쿼리가 서브 쿼리를 포함하는 종속적인 관계::
+::문제를 풀 때 메인쿼리와 서브쿼리를 분리해서 풀어내야 한다::
+
+* *알려지지 않은 기준*을 이용한 검색에 유용
+	* 연봉이 상위 5퍼센트인 남자 사원
+* 메인 쿼리가 실행되기 이전에 *한 번만 실행*
+* 한 문장에서 *여러 번 사용* 가능
+
+```sql
+SELECT * FROM employee
+WHERE 급여 >
+(SELECT 급여 FROM employee WHERE 이름='elice');
+```
+: 사원 elice의 급여를 알지 못해도 검색이 가능하다
+
+*주의 사항*
+1. 서브 쿼리는 괄호와 함께 사용
+2. ORDER BY 절은 사용할 수 없다
+3. 서브 쿼리는 연산자의 온쪽에 사용되어야 한다
+4. 오로지 SELECT문으로만 작성 할 수 있다
+
+::다양한 연습을 해두자::
+
+<br />
+
+
+## 단일 행 서브쿼리
+*결과가 한 행만 나오는 서브쿼리*
+서브 쿼리가 결과를 1개의 값만 반환하고, 이 결과를 메인쿼리로 전달하는 쿼리
+```sql
+SELECT * FROM employee
+WHERE 급여 >
+(SELECT 급여 FROM employee WHERE 사원번호 = 1);
+```
+사원번호는 기본적으로 1개만 있으므로 한 개의 행만 반환한다 = 단일 행
+
+## 다중 행 서브쿼리
+결과가 한 행만 나오는 단일 행 서브쿼리와는 다르게 서브쿼리가 결과를 2개 이상 반환하고, 이 결과를 메인쿼리로 전달하는 쿼리
+```sql
+SELECT * FROM employee
+WHERE 급여 IN (
+SELECT max(급여) FROM employee GROUP BY 부서번호);
+```
+
+* IN : 하나라도 만족하면 반환 `1 in (1,2,3,4)` -> 참
+* ANY : *하나라도 만족*하면 반환, 비교 연산 가능 `10 < any (1,2,3,4)` -> 거짓
+* ALL : *모두 만족*하면 반환, 비교 연산 가능 `99 >= all(99,100,101)` -> 거짓
+
+<br />
+
+### 문제들
+```sql
+-- 각 부서별 나이가 제일 많은 사원을 조회하는 쿼리를 작성해주세요.
+select * from emp 
+where birthdate in
+(select min(birthdate) from emp group by deptno);
+
+-- salaries 테이블에서 from_date가 2000-12-31 이전인 사람들의 급여 중 하나의 급여 보다 더 적은 급여를 받은 직원의 급여 정보를 모두 출력해보세요.
+select * from salaries
+where salary <any
+(select salary from salaries where from_date<='2000-12-31');
+
+-- salaries 테이블에서 from_date가 2000-12-31 이전인 사람들의 급여 중 모든 급여보다 적은 급여를 받은 직원의 급여 정보를 모두 출력해보세요.
+select * from salaries
+where salary <all
+(select salary from salaries where from_date<='2000-12-31');
+```
+
+<br /><br />
+
+## 스칼라 서브쿼리
+
+*SELECT절에서 사용하는 서브쿼리*
+스칼라 서브쿼리는 *오로지 한 행만 반환*
+마치 *JOIN을 사용한 것과 같은 결과*를 나타낸다
+
+```sql
+SELECT students.name, (
+	SELECT math
+	FROM middle_test as m
+	WHERE m.student_id = students.student_id
+) AS middle_avg
+FROM students;
+```
+수학점수의 중간고사 평균을 AS를 통해 별명을 지어준다
+점수 테이블과 이름 테이블(students)를 연결한다
+ID를 비교하기 위해 서브 쿼리에서 사용하고 수학점수를 가져온다
+
+![98433298-C5E6-4BA0-8198-27B6CC2D3293](image/98433298-C5E6-4BA0-8198-27B6CC2D3293.png)
+
+<br />
+
+### 문제들
+```sql
+-- salaries 테이블에서 직원 번호와 한 직원의 평균 급여를 중복없이 출력해보세요.
+select distinct emp_no,(
+    select avg(salary) from salaries as A
+    where A.emp_no = B.emp_no
+) as avg_salary
+from salaries as B;
+-- 하나의 테이블 이지만 마치 두 개의 테이블 처럼
+
+-- join을 사용하여 두 테이블을 연결하고 10504보다 높은 수학성적 조회
+-- 1. 경민이보다 중간고사 수학점수를 높거나 같게 받은 학생들을 조회해 주세요.
+select * from middle_test as m left join students as s
+on m.student_id = s.student_id
+where m.math >=all (
+    select math from middle_test where student_id = 10504
+);
+```
