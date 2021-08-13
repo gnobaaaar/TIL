@@ -795,3 +795,83 @@ index.html
 </html>
 ```
 
+<br />
+
+<br />
+
+
+
+## Media query
+CSS를 이용해서 화면의 사이즈를 조절
+*orientation 속성*
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: gray;
+      }
+      @media screen and (max-width: 600px) {
+        div {
+          background-color: tomato;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
+```
+
+* Media query는 오직 CSS만을 이용해서 스크린의 사이즈를 알 수 있는 방법이다.(웹사이트를 보고 있는 사용자의 스크린 사이즈)
+* @media
+screen and (max-width: 00px) {} 을 이용하여 몇 픽셀부터는 달라보이도록 만들 수 있다. 이를 통해 스크린의 사이즈를 알 수 있다.
+* min 사이즈와 max사이즈를 조절하여 단계별로 만들면, 스크린 사이즈의 범위를 알 수 있다.
+* 브라우저에서 inspect의 device toolbar를 이용하여 핸드폰 기종 별 사이즈로 브라우저를 볼 수 있다.
+* media screen에 (orientation: landscape)를 이용하면, 세로모드인지 가로모드인지도 구별 할 수 있다.
+
+<br />
+
+<br />
+
+## Reset.css
+reset.css
+브라우저 스타일을 지우고 스타일을 생성하기 좋다
+
+<br/>
+
+
+## NOT
+css에서 적용되지 않기를 원할 때 not을 사용
+```css
+#login-form input:not([type="submit"]) {
+ 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease-in-out;
+}
+```
+
+<br />
+
+## form의 action
+
+POST : 백엔드 서버에 정보를 전달하는 방법
+GET : 보안에 약하다(URL에 정보가 포함된다)
+```html
+    <form action="friends.html" method="GET" id="login-form">
+      <input name="username" type="text" placeholder="Email or phone number" />
+      <input name="password" type="password" placeholder="Password" />
+      <input type="submit" value="Log In" />
+      <a href="#">Find Kokoa Account or Password</a>
+    </form>
+```
+위의 정보는 friends.html로 전달된다 -> page 이동
+
