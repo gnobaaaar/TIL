@@ -875,3 +875,465 @@ GET : 보안에 약하다(URL에 정보가 포함된다)
 ```
 위의 정보는 friends.html로 전달된다 -> page 이동
 
+
+
+
+
+## Day11
+
+화면 구현하기 : Box-shadow 구글링이 최고시다
+
+![image-20210814223931185](image/image-20210814223931185.png)
+
+Index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nomad Player</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/d4409a116e.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="list-container">
+      <div class="list-header">
+        <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-search"></i>
+      </div>
+
+      <div class="list-artist">
+        <img
+          src="https://www.nme.com/wp-content/uploads/2021/08/Nas-photo-Kings-Disease-2.jpg"
+          alt=""
+        />
+        <span class="list-artist__name">Nas</span>
+        <span class="list-artist__intro">Rap, Hip-Hop</span>
+      </div>
+
+      <div class="list-btn">
+        <div class="list-btn__shuffle">Shuffle</div>
+        <div class="list-btn__like">
+          <i class="fas fa-heart"></i>
+          <span>212,971</span>
+        </div>
+      </div>
+
+      <div class="list-music">
+        <div class="music-container">
+          <div class="music-container__pic">
+            <img
+              src="주소생략"
+              alt=""
+            />
+          </div>
+          <div class="music-container__title">
+            <span>Nas</span>
+            <span>Halftime</span>
+          </div>
+          <div class="music-container__dots">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+        <div class="music-container music-container__select">
+          <div class="music-container__pic music-container__pic--select">
+            <img
+              src="주소생략"
+              alt=""
+            />
+            <div class="music-container__selected">
+              <i class="fas fa-headphones-alt fa-lg"></i>
+            </div>
+          </div>
+          <div class="music-container__title">
+            <span>Nas</span>
+            <span>Hip Hop Is Dead</span>
+          </div>
+          <div class="music-container__dots">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+        <div class="music-container">
+          <div class="music-container__pic">
+            <img
+              src="주소생략"
+              alt=""
+            />
+          </div>
+          <div class="music-container__title">
+            <span>Nas</span>
+            <span>EPMD 2</span>
+          </div>
+          <div class="music-container__dots">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+        <div class="music-container">
+          <div class="music-container__pic">
+            <img
+              src="주소생략"
+              alt=""
+            />
+          </div>
+          <div class="music-container__title">
+            <span>Nas</span>
+            <span>The World Is Yours</span>
+          </div>
+          <div class="music-container__dots">
+            <i class="fas fa-ellipsis-v"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-playbar">
+        <div class="playbar-title">
+          <span>Nas</span>
+          <span>EPMD2</span>
+        </div>
+        <div class="playber-icons">
+          <i class="fas fa-step-backward"></i>
+          <i class="fas fa-pause"></i>
+          <i class="fas fa-step-forward"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="play-container">
+      <div class="list-header">
+        <i class="fas fa-arrow-left"></i>
+        <i class="fas fa-ellipsis-v"></i>
+      </div>
+
+      <div class="play-content">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/2/22/Hiphopisdead1.jpg"
+          alt=""
+        />
+        <span>EPMD2</span>
+        <span>Nas</span>
+      </div>
+
+      <div class="play-timeline">
+        <span>1:56</span>
+        <span>2:21</span>
+      </div>
+
+      <div class="play-bar">
+        <div class="play-bar__bars"></div>
+        <div class="play-bar__bars"></div>
+        <div class="play-bar__dot"></div>
+      </div>
+
+      <div class="play-btn">
+        <div class="play-btn__sub">
+          <i class="fas fa-redo-alt"></i>
+        </div>
+        <i class="fas fa-step-backward fa-lg"></i>
+        <div class="playicons"><i class="fas fa-play fa-lg"></i></div>
+        <i class="fas fa-step-forward fa-lg"></i>
+        <div class="play-btn__sub"><i class="fas fa-sync"></i></div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+style.css
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import "reset.css";
+
+:root {
+}
+
+body {
+  font-family: "Permanent Marker", cursive;
+  width: 100vw;
+  height: 120vh;
+  background-color: #f3f3f5;
+  color: #222222;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-container {
+  width: 300px;
+  height: 650px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px 20px;
+  position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.list-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 0px; */
+}
+
+.list-artist img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.list-artist__name {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+.list-artist__intro {
+  font-size: 16px;
+  opacity: 0.3;
+}
+
+.list-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px 0px;
+}
+
+.list-btn__shuffle {
+  width: 100px;
+  height: 40px;
+  background-color: #222222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border-radius: 40px;
+}
+
+.list-btn__like {
+  width: 100px;
+  height: 40px;
+  background-color: #f3f3f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 15px;
+  border-radius: 40px;
+}
+
+.list-btn__like span {
+  opacity: 0.3;
+}
+
+.list-music {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.music-container {
+  margin: 5px 15px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.music-container__select {
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+.music-container__pic img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.music-container__pic--select {
+  position: relative;
+}
+
+.music-container__selected i {
+  position: absolute;
+  left: 25px;
+  top: 15px;
+  color: white;
+}
+
+.music-container__title {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+}
+
+.music-container__title span:first-child {
+  font-size: 12px;
+  opacity: 0.3;
+  margin-bottom: 5px;
+}
+
+.music-container__title span:last-child {
+  font-size: 14px;
+}
+
+.music-container__dots i {
+  opacity: 0.3;
+}
+
+.list-playbar {
+  position: absolute;
+  bottom: 20px;
+  height: 55px;
+  width: 300px;
+  background-color: #222222;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.playbar-title {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.playbar-title span:first-child {
+  font-size: 13px;
+  color: gray;
+}
+
+.playbar-title span:last-child {
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.playber-icons {
+  margin-right: 20px;
+}
+
+.playber-icons i {
+  margin-right: 10px;
+}
+
+.play-container {
+  width: 300px;
+  height: 650px;
+  background-color: white;
+  border-radius: 25px;
+  margin-left: 30px;
+  padding: 30px 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.play-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-content img {
+  width: 200px;
+  height: 200px;
+  margin: 50px 0px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.play-content span {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.play-content span:last-child {
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.play-timeline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  opacity: 0.4;
+}
+
+.play-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.play-bar div:nth-child(1) {
+  width: 60%;
+  height: 5px;
+  background-color: #222222;
+}
+
+.play-bar div:nth-child(2) {
+  width: 40%;
+  height: 5px;
+  background-color: #f3f3f5;
+}
+
+.play-bar__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #222222;
+  position: absolute;
+  left: 58%;
+}
+
+.play-btn {
+  margin-top: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.play-btn__sub {
+  opacity: 0.3;
+}
+
+.playicons {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222222;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+```
+

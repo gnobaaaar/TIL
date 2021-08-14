@@ -123,9 +123,7 @@ extract_indeed_jobs(last_indeed_page)
 
 국가코드 스크래핑
 
-![image-20210813234605059](image/image-20210813234605059.png)
-
-
+![Aug-14-2021 02-52-11](image/Aug-14-2021 02-52-11.gif)
 
 ```python
 import os
@@ -134,7 +132,7 @@ from bs4 import BeautifulSoup
 
 os.system("clear")
 URL = "https://www.iban.com/currency-codes"
-
+  
 def country_list():
   result = requests.get(URL)
   soup = BeautifulSoup(result.text, "html.parser")
@@ -146,7 +144,7 @@ def country_list():
     tmp = i.find_all('td')
     tmp_list = []
     if tmp[3]:
-      tmp_list.append(tmp[0].string)
+      tmp_list.append((tmp[0].string).capitalize())
       tmp_list.append(tmp[2].string)
     list.append(tmp_list)
   
@@ -161,10 +159,14 @@ def user_input(list):
   while(1):
     try:
       number = int(input())
-      print(f"You chose {list[number][0]}")
-      print(f"The currency code is {list[number][1]}")
+      print(f"You chose {list[number][0]}.")
+      print(f"The currency code is {list[number][1]}.")
+      print("DONE!😄")
       break
-    except:
+    except IndexError:
       print("Choose a number from the list.")
+      continue
+    except ValueError:
+      print("That wasn't a number.")
       continue
 ```
