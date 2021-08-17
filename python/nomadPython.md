@@ -170,3 +170,127 @@ def user_input(list):
       print("That wasn't a number.")
       continue
 ```
+
+
+
+
+
+## 챌린지 day
+
+알바천국 슈퍼브랜드 사이트 웹 스크래핑하기
+
+![Aug-17-2021 03-20-46](image/Aug-17-2021 03-20-46.gif)
+
+![image-20210817032152870](image/image-20210817032152870.png)
+
+```python
+import os
+import csv
+import requests
+from bs4 import BeautifulSoup
+
+os.system("clear")
+alba_url = "http://www.alba.co.kr"
+
+# 슈퍼브랜드 urls
+def company_list():
+  result = requests.get(alba_url)
+  soup = BeautifulSoup(result.text, "html.parser")
+  list = soup.find('div', {'id':'MainSuperBrand'})
+  list2 = list.find("ul", {"class": "goodsBox"})
+  list3 = list2.find_all("li")[:-3]
+
+  company_name = []
+  company_url =[]
+
+  for i in list3:
+    company_name.append(i.find("span", {"class":"company"}).text)
+    company_url.append(i.find("a", {"class":"goodsBox-info"})["href"])
+
+  result = []
+
+  for i in range(len(company_name)):
+    mini = []
+    mini.append(company_name[i])
+    mini.append(company_url[i])
+    result.append(mini)
+
+  return result
+
+
+# 각 회사 항목 detail
+def collect_company(url_list):
+  com_url = url_list[1]
+  result = requests.get(com_url)
+  soup = BeautifulSoup(result.text, "html.parser")
+  list = soup.find('tbody')
+
+  place_list = list.find_all('td', {'class':'local'})
+  title_list = list.find_all('span', {'class':'company'})
+  time_list = list.find_all('td', {'class':'data'})
+  pay_list = list.find_all('td', {'class':'pay'})
+  date_list = list.find_all('td', {'class':'regDate'})
+
+  # 지역
+  place = []
+  for i in place_list:
+    i = i.text
+    i = i.replace('\xa0', ' ')
+    place.append(i)
+  
+  # 매장명
+  title = []
+  for i in title_list:
+    i = i.text
+    title.append(i)
+
+  # time
+  time = []
+  for i in time_list:
+    i = i.text
+    time.append(i)
+  
+  # pay
+  pay = []
+  for i in pay_list:
+    i = i.text
+    pay.append(i)
+
+  # date
+  date = []
+  for i in date_list:
+    i = i.text
+    date.append(i)
+
+  result = []
+  for i in range(len(place)):
+    mini_result = []
+    mini_result.append(place[i])
+    mini_result.append(title[i])
+    mini_result.append(time[i])
+    mini_result.append(pay[i])
+    mini_result.append(date[i])
+    result.append(mini_result)
+
+  return result
+
+
+def save_to_file(lists, name):
+  file_name = name[0]
+  file_name = file_name.replace('/', '_') 
+  file = open(f"{file_name}.csv",mode="w")
+  writer = csv.writer(file)
+  writer.writerow(["place", "title", "time", "pay", "date"])
+  for company in lists:
+    writer.writerow(list(company))
+  return
+
+
+
+url_list = company_list()
+
+for url in url_list:
+  company = collect_company(url)
+  save_to_file(company, url)
+```
+
