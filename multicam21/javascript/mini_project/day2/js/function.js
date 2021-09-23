@@ -1,0 +1,1 @@
+//1. function(parameter, parameter, ... ){ 구현; (return data;)}

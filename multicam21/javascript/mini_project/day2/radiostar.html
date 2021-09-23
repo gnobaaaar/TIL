@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <script src="./js.js" defer></script>
+  </head>
+
+  <body>
+    <form>
+      <table border="1">
+        <tr>
+          <td>선택< /td></td>
+
+          <td>프로젝트명</td>
+        </tr>
+        <tr>
+          <td><input type="radio" id="radio" onclick="setText(0)" /></td>
+          <td>전자인사관리시스템</td>
+        </tr>
+        <tr>
+          <td><input type="radio" onclick="setText(1)" /></td>
+          <td>도서관리시스템</td>
+        </tr>
+        <tr>
+          <td><input type="radio" onclick="setText(2)" /></td>
+          <td>IaaS 서비스</td>
+        </tr>
+        <tr>
+          <td><input type="radio" onclick="setText(3)" /></td>
+          <td>PaaS 서비스</td>
+        </tr>
+        <tr>
+          <td><input type="radio" onclick="setText(4)" /></td>
+          <td>SaaS 서비스</td>
+        </tr>
+        <tr>
+          <td><input type="radio" onclick="setText(5)" /></td>
+          <td>AI보안시스템</td>
+        </tr>
+      </table>
+    </form>
+
+    <div>
+      <span>프로젝트 번호</span>
+      <input type="text" id="pNum" />
+    </div>
+    <div>
+      <span>프로젝트 이름</span>
+      <input type="text" id="pName" />
+    </div>
+    <div>
+      <span>프로젝트 설명</span>
+      <input type="text" id="pDes" />
+    </div>
+  </body>
+</html>
