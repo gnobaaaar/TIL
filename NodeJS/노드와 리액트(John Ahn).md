@@ -7,6 +7,9 @@
 npm init
 
 index.js 생성
+
+npm install express --save
+
 ```
 
 
