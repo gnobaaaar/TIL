@@ -1,1 +1,1 @@
-<img src="http://image.yes24.com/goods/92742567/XL" alt="모던 자바스크립트 Deep Dive" style="zoom:50%;" />
+<img src="http://image.yes24.com/goods/92742567/XL" alt="모던 자바스크립트 Deep Dive" style="zoom: 33%;" />
