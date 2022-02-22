@@ -2,7 +2,7 @@
 
 <br/>
 
-# Part 2 네트워크와 케이블
+# 네트워크
 
 LAN : local Area Network
 
@@ -26,7 +26,7 @@ Ethernet(이더넷) : 네트워킹의 한 방식
 - 48bit = 6옥텟
   - 앞의 24bit는 제조사, 뒤의 24bit는 고유번호 -> (일단은) 바꿀 수 없다
 
-<br/><br/>
+<br/>
 
 ### TCP/IP
 
@@ -57,15 +57,11 @@ Personal Area Network -> 블루투스
 
 ### Ethernet
 
-- CSMA/CD (Carrier,신호 Sense with Collison Detection)
+- CSMA/CD (Carrier, 신호 Sense with Collison Detection)
 
 <br/>
 
 > 패킷은 비트들의 모임이다
-
-<br/>
-
-<br/>
 
 <br/>
 
@@ -87,7 +83,7 @@ Personal Area Network -> 블루투스
 
 **L4 세그먼트 -> L3 세그먼트 + 헤더(IP) -> L2 패킷 + 헤더(MAC) -> L1**
 
-L2에서 라우터A(게트웨이)의 MAC주소를 붙인다
+**L2에서 라우터A(게트웨이)의 MAC주소를 붙인다**
 
 MAC주소는 Physical Address
 
@@ -95,9 +91,39 @@ MAC주소는 Physical Address
 
 <br/>
 
-<br/>
-
 ## TCP/IP
 
+인터넷에서 사용하는 통신규약
 
+TCP : Transmission Control Protocol -> 전송 계층
+
+IP : Internet Protocol -> 네트워크계층
+
+<br/>
+
+- LAN
+  - Wired LAN(유선랜) : **이더넷** -> CSMA/CD
+  - Wireless LAN(무선랜) : WLAN (의 프로토콜 -> WIFI, IEEE802.11)
+- WAN (wide area network)
+- PAN (personal area network) : 블루투스
+
+<br/>
+
+### MAC address
+
+= physical address
+
+ARP를 통해 IP주소와 대응
+
+48비트 : 24비트 제조사 + 24비트 고유번호
+
+<br/>
+
+### DHCP
+
+Dynamic Host Configuration Protocol의 약자
+
+호스트의 IP주소와 각종 TCP/IP 프로토콜의 기본 설정을 클라이언트에게 자동적으로 제공해주는 프로토콜
+
+<Br/>
 
