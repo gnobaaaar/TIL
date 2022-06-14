@@ -32,3 +32,6 @@ Component = HTML + (CSS) + some JS
 
 
 index.js -> 처음 실행되는 파일
+
+<br/>
+
